@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Load saved settings
     const settings = await chrome.storage.sync.get({
-        enabled: false,
+        enabled: true,
+        // sourceUrl: '@nostrops',
         sourceUrl: 'nostrops.spaces',
         // targetUrl: 'example.com'
         targetUrl: '70.251.209.207'

@@ -5,7 +5,8 @@ const RULE_ID = 1;
 chrome.runtime.onInstalled.addListener(async () => {
     // Load initial settings
     const settings = await chrome.storage.sync.get({
-        enabled: false,
+        enabled: true,
+        // sourceUrl: '@nostrops',
         sourceUrl: 'nostrops.spaces',
         // targetUrl: 'example.com'
         targetUrl: '70.251.209.207'
@@ -30,6 +31,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 async function handleToggleRedirect(enabled) {
     if (enabled) {
         const settings = await chrome.storage.sync.get({
+            // sourceUrl: '@nostrops',
             sourceUrl: 'nostrops.spaces',
             // targetUrl: 'example.com'
             targetUrl: '70.251.209.207'
