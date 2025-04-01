@@ -58,19 +58,10 @@ async function updateRedirectRule(sourceUrl, targetUrl) {
         id: RULE_ID,
         priority: 1,
         action: {
-            type: "modifyHeaders",
-            responseHeaders: [
-                {
-                    header: "Host",
-                    operation: "set",
-                    value: targetUrl
-                },
-                {
-                    header: "X-Forwarded-Host",
-                    operation: "set",
-                    value: sourceUrl
-                }
-            ]
+            type: "redirect",
+            redirect: {
+                url: `https://${targetUrl}`
+            }
         },
         condition: {
             urlFilter: `*://${sourceUrl}/*`,
@@ -82,9 +73,9 @@ async function updateRedirectRule(sourceUrl, targetUrl) {
         await chrome.declarativeNetRequest.updateDynamicRules({
             addRules: [rule]
         });
-        console.log('Header modification rule updated successfully');
+        console.log('Redirect rule updated successfully');
     } catch (error) {
-        console.error('Error updating header modification rule:', error);
+        console.error('Error updating redirect rule:', error);
     }
 }
 
