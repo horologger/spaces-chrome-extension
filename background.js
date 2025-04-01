@@ -62,7 +62,10 @@ async function updateRedirectRule(sourceUrl, targetUrl) {
         action: {
             type: "redirect",
             redirect: {
-                url: `http://${targetUrl}`
+                transform: {
+                    host: targetUrl,
+                    scheme: "http"
+                }
             }
         },
         condition: {
@@ -75,9 +78,9 @@ async function updateRedirectRule(sourceUrl, targetUrl) {
         await chrome.declarativeNetRequest.updateDynamicRules({
             addRules: [rule]
         });
-        console.log('Redirect rule updated successfully');
+        console.log('URL transformation rule updated successfully');
     } catch (error) {
-        console.error('Error updating redirect rule:', error);
+        console.error('Error updating URL transformation rule:', error);
     }
 }
 
@@ -87,8 +90,8 @@ async function removeRedirectRule() {
         await chrome.declarativeNetRequest.updateDynamicRules({
             removeRuleIds: [RULE_ID]
         });
-        console.log('Header modification rule removed successfully');
+        console.log('URL transformation rule removed successfully');
     } catch (error) {
-        console.error('Error removing header modification rule:', error);
+        console.error('Error removing URL transformation rule:', error);
     }
 }
