@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load saved settings
     const settings = await chrome.storage.sync.get({
         enabled: false,
-        sourceUrl: 'nostrops.space',
-        targetUrl: 'example.com'
+        sourceUrl: 'nostrops.spaces',
+        // targetUrl: 'example.com'
+        targetUrl: '70.251.209.207'
     });
 
     // Update UI with saved settings

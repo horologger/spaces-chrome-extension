@@ -6,9 +6,9 @@ chrome.runtime.onInstalled.addListener(async () => {
     // Load initial settings
     const settings = await chrome.storage.sync.get({
         enabled: false,
-        sourceUrl: 'nostrops.space',
-        targetUrl: 'example.com'
-        // targetUrl: '70.251.209.207'
+        sourceUrl: 'nostrops.spaces',
+        // targetUrl: 'example.com'
+        targetUrl: '70.251.209.207'
     });
 
     // Set up initial rules if enabled
@@ -30,9 +30,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 async function handleToggleRedirect(enabled) {
     if (enabled) {
         const settings = await chrome.storage.sync.get({
-            sourceUrl: 'nostrops.space',
-            targetUrl: 'example.com'
-            // targetUrl: '70.251.209.207'
+            sourceUrl: 'nostrops.spaces',
+            // targetUrl: 'example.com'
+            targetUrl: '70.251.209.207'
         });
         await updateRedirectRule(settings.sourceUrl, settings.targetUrl);
     } else {
@@ -60,7 +60,7 @@ async function updateRedirectRule(sourceUrl, targetUrl) {
         action: {
             type: "redirect",
             redirect: {
-                url: `https://${targetUrl}`
+                url: `http://${targetUrl}`
             }
         },
         condition: {
